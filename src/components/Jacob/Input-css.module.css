@@ -1,0 +1,9 @@
+.tvl {
+    color: white;
+    font-size:20px;
+}
+.valuesOnTheRight {
+    display: flex;
+    color: lightgray;
+    
+}

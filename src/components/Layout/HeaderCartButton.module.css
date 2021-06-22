@@ -57,3 +57,21 @@
       transform: scale(1);
     }
   }
+  .closingButton {
+    cursor: pointer;
+    font: inherit;
+    border: none;
+    background-color: #29006b;
+    color: white;
+    padding: 0.5rem 2rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 5px;
+    font-weight: bold;
+  }
+  
+  .closingButton:hover,
+  .closingButton:active {
+    background-color: #12002f;
+  }
