@@ -1,9 +1,30 @@
 .tvl {
     color: white;
     font-size:20px;
+    margin: 5px;
+    margin-bottom: 30px;
 }
 .valuesOnTheRight {
     display: flex;
+    margin: 5px;
     color: lightgray;
-    
+    float: right;
+}
+.topdiv {
+    margin: 5px
+}
+.totalVolume {
+    margin: 5px;
+    color: white;
+    font-size: 24px;
+    justify-items: center;
+}
+.percentage {
+    margin: 5px;
+    font-size: 15px;
+    color: rgb(149, 0, 0);
+}
+.content {
+    justify-content: space-between;
+    display: flex;
 }

@@ -17,19 +17,25 @@ const CoinSwap = (props) => {
       {showStatements && (
         <Modal02 onClick={onClick}>
           <div>
-            <div className={cls.tvl}>TVL</div>
-            <div className={cls.valuesOnTheRight}>
-              <div>TVL</div>
-              <div>TVL</div>
-              <div>TVL</div>
+            <div className={cls.topdiv}>
+              <div className={cls.tvl}></div>
+                TVL
+                <div className={cls.valuesOnTheRight}>
+                  <button className={cls.topdiv}>Total</button>
+                  <button className={cls.topdiv}>Swap</button>
+                  <button className={cls.topdiv}>Farm</button>
+                
+              </div>
             </div>
 
-            <div>TVL</div>
-            <div>TVL</div>
+            <div className={cls.percentage}>↓ 23.30%</div>
+            <div className={cls.content}>
+              <div className={cls.totalVolume}>$8,468,456,123</div>
+                <button className={classes.closingButton} onClick={onClick}>
+                  Close
+                </button>
+            </div>
           </div>
-          <button className={classes.closingButton} onClick={onClick}>
-            Close
-          </button>
         </Modal02>
       )}
     </div>
