@@ -16,17 +16,17 @@ const CoinSwap = (props) => {
   const [totalValue, setTotalValue] = useState(0);
   const [isActive, setIsActive] = useState(false);
 
-  let arrow = "🡡";
+  let arrow = "🡡 ";
   let counter = "";
   if (totalValue > 50000000) {
-    arrow = "🡡";
+    arrow = "🡡 ";
     counter = true;
   } else {
-    arrow = "🡣";
+    arrow = "🡣 ";
     counter = false;
   }
 
-  let countersValue = ((totalValue / 50000000) -1) * 100 ;
+  let countersValue = (totalValue / 50000000 - 1) * 100;
 
   const toggle = () => {
     setIsActive(!isActive);
@@ -36,9 +36,7 @@ const CoinSwap = (props) => {
     let totalValue = null;
     if (isActive) {
       totalValue = setInterval(() => {
-        setTotalValue((totalValue) =>
-          Math.floor(Math.random() * 100000000)
-        );
+        setTotalValue((totalValue) => Math.floor(Math.random() * 100000000));
       }, 1000);
     } else if (!isActive && totalValue !== 0) {
       clearInterval(totalValue);
@@ -75,14 +73,19 @@ const CoinSwap = (props) => {
                 </div>
               </div>
             </div>
-
-            <div
-              style={{ color: counter ? "green" : "red" }}
-              className={cls.percentage}
-            >
-              {arrow}
-              {countersValue.toFixed(2)}%
+            <div className={cls.content}>
+              <div
+                style={{ color: counter ? "green" : "red" }}
+                className={cls.percentage}
+              >
+                {arrow}
+                {countersValue.toFixed(2)}%
+              </div>
+              <div className={cls.percentage}>
+                {''}
+              </div>
             </div>
+
             <div className={cls.content}>
               <div className={cls.totalVolume}>
                 $ {totalValue.toLocaleString()}
