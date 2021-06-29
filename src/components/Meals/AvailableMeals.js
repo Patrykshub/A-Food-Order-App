@@ -1,15 +1,14 @@
 import { useEffect, useState } from "react";
 
 import classes from "./AvailableMeals.module.css";
-import './Loader.css';
+import "./Loader.css";
 import MealItem from "./MealItem/MealItem";
 import Card from "../UI/Card";
 
 const AvailableMeals = () => {
   const [meals, setMeals] = useState([]);
-   const [isLoading, setIsLoading] = useState(false);
-
-   
+  const [isLoading, setIsLoading] = useState(false);
+  const [httpError, setHttpError] = useState();
 
   useEffect(() => {
     const fetchMeals = async () => {
@@ -17,10 +16,15 @@ const AvailableMeals = () => {
       const response = await fetch(
         "https://react-my-burger360-default-rtdb.firebaseio.com/meals.json"
       );
+
+      if (!response.ok) {
+        throw new Error("Something went wrong!");
+      }
+
       const responseData = await response.json();
-      
+
       const loadedMeals = [];
-        setIsLoading(false);
+      setIsLoading(false);
       for (const key in responseData) {
         loadedMeals.push({
           id: key,
@@ -31,10 +35,13 @@ const AvailableMeals = () => {
       }
       setMeals(loadedMeals);
     };
-    fetchMeals();
+    fetchMeals().catch((error) => {
+      setIsLoading(false);
+      setHttpError(error.message);
+    });
   }, []);
 
-  let content = <p>No meals yet.</p>
+  let content = <p>No meals yet.</p>;
 
   if (isLoading) {
     content = (
@@ -44,6 +51,13 @@ const AvailableMeals = () => {
         <div></div>
         <div></div>
       </div>
+    );
+  }
+  if (httpError) {
+    return (
+      <section className={classes.MealsError}>
+        <p>{httpError}</p>
+      </section>
     );
   }
 
@@ -59,8 +73,7 @@ const AvailableMeals = () => {
   return (
     <section className={classes.meals}>
       <Card>
-      
-        <ul>{ isLoading ? content : mealsList}</ul>
+        <ul>{isLoading ? content : mealsList}</ul>
       </Card>
     </section>
   );
